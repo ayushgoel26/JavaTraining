@@ -51,6 +51,13 @@ public class Patient {
 	public void setPatientAge(int patientAge) {
 		this.patientAge = patientAge;
 	}
+
+	@Override
+	public String toString() {
+		return "Patient Name : " + patientName + "\n Appointment is on " + apptDay + " at " + apptTime
+				+ "\n";
+	}
+	
 	
 	
 	

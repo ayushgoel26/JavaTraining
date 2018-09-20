@@ -31,6 +31,10 @@ public class Doctor {
 	public void setDocAge(int docAge) {
 		this.docAge = docAge;
 	}
+	@Override
+	public String toString() {
+		return "Doctor [docName=" + docName + ", docSpec=" + docSpec + ", docAge=" + docAge + "]";
+	}
 	
 	
 }

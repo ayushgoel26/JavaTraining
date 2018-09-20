@@ -57,9 +57,19 @@ public class Hospital {
 		setSpecialisation(doctor,doctor.getDocSpec());
 	}
 	
+	//public void addPatient(String patName, int patAge) {
+	//	Patient a1 = new Patient(patName, patAge);
+	//	patientSet.add(a1);
+	//	System.out.println(patientSet.toString());
+	//}
+	
+	public void addPatient(Patient patient) {
+		patientSet.add(patient);
+	}
+	
 	public void setSpecialisation(Doctor doctor, String specialisation){
 		if(this.SpecMap.containsKey(specialisation)){
-			HashSet<Doctor> doctors = this.SpecMap .get(specialisation);
+			HashSet<Doctor> doctors = this.SpecMap.get(specialisation);
 			doctors.add(doctor);
 			this.SpecMap.put(specialisation, doctors); 
 		}
@@ -70,15 +80,16 @@ public class Hospital {
 		}
 	}
 	
-	public String fixAppt (Doctor doctor, Patient patient, String apptTime){
+	public String fixAppt (Doctor doctor, Patient patient, String apptDay, String apptTime){
 		patient.setApptTime(apptTime);
+		patient.setApptDay(apptDay);
 		if(this.doctorSet.contains(doctor)){
 			if(this.ApptMap.containsKey(doctor)){
 				HashSet<Patient> patients = this.ApptMap.get(doctor);
 				boolean addPatient = patients.add(patient);
 				Object obj = this.ApptMap.put(doctor, patients);
-				if (addPatient && obj == null ){
-					return "Appointment Added";
+				if (addPatient && obj != null ){
+					return "Appointment Added for " + doctor.getDocName();
 				}
 				else {
 					return "Appointment could not be fixed.";
@@ -88,7 +99,7 @@ public class Hospital {
 				boolean addPatient = patients.add(patient);
 				Object obj = this.ApptMap.put(doctor, patients);
 				if (addPatient && obj == null ){
-					return "Appointment Added";
+					return "Appointment Added for " + doctor.getDocName();
 				}
 				else {
 					return "Appointment could not be fixed.";
@@ -100,4 +111,44 @@ public class Hospital {
 			return "Doctor does not exist";
 		}
 	}
+	
+	
+	public String cancelAppt (Doctor doctor, Patient patient){
+		if(this.doctorSet.contains(doctor)){
+			if(this.ApptMap.containsKey(doctor)){
+				HashSet<Patient> patients = this.ApptMap.get(doctor);
+				boolean cancelled = patients.remove(patient);
+				if (cancelled){
+					return "Appointment cancelled for " + patient.getPatientName();
+				}
+				else {
+					return "Appointment could not be cancelled. Try Again!";
+				}
+			} else {
+				HashSet<Patient> patients = new HashSet<>();
+				boolean cancelled = patients.remove(patient);
+				if (cancelled){
+					return "Appointment cancelled for " + patient.getPatientName();
+				}
+				else {
+					return "Appointment could not be cancelled. Try Again!";
+				}
+			}
+		}
+		else{
+			return "Doctor does not exist";
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
