@@ -8,12 +8,10 @@ public class Application {
 		Hospital sakra = new Hospital("Sakra");
 
 		Doctor steve = new Doctor("Steve", "ENT", 45);
-		sakra.addDoctor(steve);
-
 		Doctor roger = new Doctor("Roger", "Cardiology", 54);
-		sakra.addDoctor(roger);
-
 		Doctor stephen = new Doctor("Stephen", "ENT", 56);
+		sakra.addDoctor(steve);
+		sakra.addDoctor(roger);
 		sakra.addDoctor(stephen);
 
 		Patient ayush = new Patient("Ayush", 23);
@@ -43,8 +41,8 @@ public class Application {
 			case "1":
 				System.out.print("Enter the Specialisation: \n");
 				String spec = sc.nextLine();
-				if (sakra.SpecMap.containsKey(spec)) {
-					System.out.println(sakra.SpecMap.get(spec));
+				if (sakra.specMap.containsKey(spec)) {
+					System.out.println(sakra.specMap.get(spec));
 				} else {
 					System.out.println("No Doctors!");
 				}
@@ -57,14 +55,13 @@ public class Application {
 					if (obj.getDocName().equals(docName))
 						doct = obj;
 				}
-				if (sakra.ApptMap.containsKey(doct)) {
-					System.out.println(sakra.ApptMap.get(doct));
+				if (sakra.apptMap.containsKey(doct)) {
+					System.out.println(sakra.apptMap.get(doct));
 				} else {
 					System.out.println("No Appointments");
 				}
 				break;
 			case "3":
-				System.out.print("Feature not added yet! \n");
 				System.out.println("Enter Patient Name");
 				String patName = sc.nextLine();
 				System.out.println("Enter Doctor Name");

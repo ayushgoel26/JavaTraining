@@ -8,8 +8,8 @@ public class Hospital {
 	HashSet<Doctor> doctorSet = new HashSet<>();
 	HashSet<Patient> patientSet = new HashSet<>();
 
-	HashMap<Doctor, HashSet<Patient>> ApptMap = new HashMap<>();
-	HashMap<String, HashSet<Doctor>> SpecMap = new HashMap<>();
+	HashMap<Doctor, HashSet<Patient>> apptMap = new HashMap<>();
+	HashMap<String, HashSet<Doctor>> specMap = new HashMap<>();
 	
 	public Hospital(String hospName) {
 		this.hospName = hospName;
@@ -20,8 +20,8 @@ public class Hospital {
 		this.hospName = hospName;
 		this.doctorSet = doctorSet;
 		this.patientSet = patientSet;
-		ApptMap = apptMap;
-		SpecMap = specMap;
+		this.apptMap = apptMap;
+		this.specMap = specMap;
 	}
 
 	public String getHospName() {
@@ -41,15 +41,15 @@ public class Hospital {
 	}
 
 	public HashMap<Doctor, HashSet<Patient>> getApptMap() {
-		return ApptMap;
+		return apptMap;
 	}
 
 	public HashMap<String, HashSet<Doctor>> getSpecMap() {
-		return SpecMap;
+		return specMap;
 	}
 
-	public void setSpecMap(HashMap<String, HashSet<Doctor>> specMap) {
-		SpecMap = specMap;
+	public void setSpecMap(HashMap<String, HashSet<Doctor>> specMap1) {
+		specMap = specMap1;
 	}
 	
 	public void addDoctor(Doctor doctor){
@@ -68,15 +68,15 @@ public class Hospital {
 	}
 	
 	public void setSpecialisation(Doctor doctor, String specialisation){
-		if(this.SpecMap.containsKey(specialisation)){
-			HashSet<Doctor> doctors = this.SpecMap.get(specialisation);
+		if(this.specMap.containsKey(specialisation)){
+			HashSet<Doctor> doctors = this.specMap.get(specialisation);
 			doctors.add(doctor);
-			this.SpecMap.put(specialisation, doctors); 
+			this.specMap.put(specialisation, doctors); 
 		}
 		else{
 			HashSet<Doctor> doctors=new HashSet<>();
 			doctors.add(doctor);
-			this.SpecMap.put(specialisation, doctors); 
+			this.specMap.put(specialisation, doctors); 
 		}
 	}
 	
@@ -84,10 +84,10 @@ public class Hospital {
 		patient.setApptTime(apptTime);
 		patient.setApptDay(apptDay);
 		if(this.doctorSet.contains(doctor)){
-			if(this.ApptMap.containsKey(doctor)){
-				HashSet<Patient> patients = this.ApptMap.get(doctor);
+			if(this.apptMap.containsKey(doctor)){
+				HashSet<Patient> patients = this.apptMap.get(doctor);
 				boolean addPatient = patients.add(patient);
-				Object obj = this.ApptMap.put(doctor, patients);
+				Object obj = this.apptMap.put(doctor, patients);
 				if (addPatient && obj != null ){
 					return "Appointment Added for " + doctor.getDocName();
 				}
@@ -97,7 +97,7 @@ public class Hospital {
 			} else {
 				HashSet<Patient> patients = new HashSet<>();
 				boolean addPatient = patients.add(patient);
-				Object obj = this.ApptMap.put(doctor, patients);
+				Object obj = this.apptMap.put(doctor, patients);
 				if (addPatient && obj == null ){
 					return "Appointment Added for " + doctor.getDocName();
 				}
@@ -115,8 +115,8 @@ public class Hospital {
 	
 	public String cancelAppt (Doctor doctor, Patient patient){
 		if(this.doctorSet.contains(doctor)){
-			if(this.ApptMap.containsKey(doctor)){
-				HashSet<Patient> patients = this.ApptMap.get(doctor);
+			if(this.apptMap.containsKey(doctor)){
+				HashSet<Patient> patients = this.apptMap.get(doctor);
 				boolean cancelled = patients.remove(patient);
 				if (cancelled){
 					return "Appointment cancelled for " + patient.getPatientName();
