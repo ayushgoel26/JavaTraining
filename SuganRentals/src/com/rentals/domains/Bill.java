@@ -1,8 +1,9 @@
 package com.rentals.domains;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
-public class Bill {
+public class Bill implements Serializable{
 	
 	private long invoiceID;
 	private Customer customer;
@@ -10,6 +11,21 @@ public class Bill {
 	
 	//Calculated Variables
 	private double totalAmount;
+
+	public Bill(long invoiceID, HashSet<Items> itemSet) {
+		super();
+		this.invoiceID = invoiceID;
+		this.itemSet = itemSet;
+	}
+	
+	public Bill(long invoiceID, Customer customer) {
+		super();
+		this.invoiceID = invoiceID;
+		this.customer = customer;
+		this.itemSet = new HashSet<>();
+	}
+
+
 
 	public Bill(long invoiceID, Customer customer, HashSet<Items> itemSet) {
 		super();
@@ -72,15 +88,16 @@ public class Bill {
 	public boolean addItem(Items item){
 		boolean status = false;
 		if(this.itemSet.add(item)){
-			
+			status = true;
 		}
 		return status;
 	}
 	
-	public void findTotal(){
+	public double findTotal(){
 		
 		 for(Items item : this.itemSet){
 			 this.totalAmount = this.totalAmount + item.getPrice();
 		 }
+		 return this.totalAmount;
 	}
 }

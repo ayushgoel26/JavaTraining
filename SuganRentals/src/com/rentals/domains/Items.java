@@ -1,8 +1,10 @@
 package com.rentals.domains;
 
+import java.io.Serializable;
+
 import com.rentals.ifaces.*;
 
-public class Items implements Billable {
+public class Items implements Billable, Serializable {
 	private String itemName;
 	private double itemPrice;
 	private int itemQuantity;
@@ -52,7 +54,7 @@ public class Items implements Billable {
 
 	@Override
 	public String toString() {
-		return this.itemName + "," + this.itemPrice + "," + this.itemQuantity + "," + this.rentalDays;
+		return this.itemName + "-" + this.itemPrice + "-" + this.itemQuantity + "-" + this.rentalDays;
 	}
 
 

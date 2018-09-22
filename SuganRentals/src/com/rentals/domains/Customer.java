@@ -1,9 +1,16 @@
 package com.rentals.domains;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable{
 	private String customerName;
 	private long customerContactNo;
 	
+	
+	public Customer() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Customer(String customerName) {
 		this(customerName, 0);
