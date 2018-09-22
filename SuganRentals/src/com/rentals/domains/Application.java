@@ -70,17 +70,3 @@ public class Application {
 		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
