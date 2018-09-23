@@ -22,6 +22,34 @@ public class RentManager {
 	HashSet<Bill> billSet = new HashSet<>(); 
 	public HashMap<Customer, HashSet<Bill>> rentMap = new HashMap<>();
 	
+	public boolean printBill(Bill bill) {
+
+		boolean result = false;
+		PrintWriter writer = null;
+
+		try {
+			writer = new PrintWriter(new FileWriter(new File("BILLS.txt"), true));
+			writer.println("Bill: " + bill.getInvoiceID() + "\n");
+
+			for (Items item : bill.getItemSet()) {
+				writer.println( item.getItemQuantity() + " " +item.getItemName() + " " + 
+						" rented for " + item.getRentalDays() + " days at a price of " + item.getPrice());
+			}
+
+			writer.println("\nTotal: " + bill.findTotal() + "\n");
+
+			result = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			writer.close();
+		}
+
+		return result;
+
+	}
 	public boolean saveBill(){
 		boolean status = false;
 		ObjectOutputStream outStream = null;
@@ -94,88 +122,6 @@ public class RentManager {
 				}
 			}
 		}
-	}	
 	
-	/*
-	public boolean writeToTextFile(Bill bill){
-		boolean result = false;
-		PrintWriter writer = null; 
-		try {
-			writer = new PrintWriter(new FileWriter(new File("RentDetails.txt"),true));
-			writer.println(bill.toString());
-			result = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally{
-			writer.close();
-		}
-		return result;
-	}
+}	
 	
-	public HashMap<Customer, HashSet<Bill>> readFromTextFile(File file){
-		
-		HashMap<Customer, HashSet<Bill>> map = new HashMap<>();		
-		BufferedReader reader = null; 
-		
-		try {
-			reader = new BufferedReader(new FileReader(file));
-			String detailsAsString;
-			while((detailsAsString = reader.readLine()) != null){
-				splitData(detailsAsString); 
-				Customer cust = new Customer(custDetails[0],Long.parseLong(custDetails[1]));
-				HashSet<Items> itemSet = new HashSet<>();
-				int a = itemsList.length;
-				for(String i : itemsList){
-					itemDetails = i.split("-");
-					switch (itemDetails[0]) {
-					case "Car":
-						itemSet.add(new Car(Integer.parseInt(itemDetails[2]), Integer.parseInt(itemDetails[3])));
-						break;
-					case "Furniture":
-						itemSet.add(new Furniture(Integer.parseInt(itemDetails[2]), Integer.parseInt(itemDetails[3])));
-						break;
-					case "Fan":
-						itemSet.add(new Fan(Integer.parseInt(itemDetails[2]), Integer.parseInt(itemDetails[3])));
-						break;
-					case "Utensil":
-						itemSet.add(new Utensil(Integer.parseInt(itemDetails[2]), Integer.parseInt(itemDetails[3])));
-						break;
-					default:
-						break;
-					} 
-				}
-				Bill bill = new Bill(0, cust, itemSet);
-				bill.findTotal();
-				map.put(cust, null);
-			}
-			reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return map;
-		
-	}
-	
-	
-	
-	
-	public void splitData(String str){
-		billNo = str.split(":="); // Invoice ID in billDetails[0]
-		billDetails = billNo[1].split(";"); // Customer Details in [0]; Total in [2]; item set in [1]
-		custDetails = billDetails[0].split("*"); 
-		itemsList = billDetails[1].split(",");		
-		
-		
-	}
-	*/
-	//101:=Ayush*98988263763876;[Car-2000.0-3-4, Furniture-450.0-2-3];26700.0
-
-		/*
-		 * := invoice id and detail
-		 * ;  bill details into customer details, items and total
-		 * *  customer name and number 
-		 * ,  different items
-		 * -  item details - name quanity price days 
-		 * 
-		 * */
-

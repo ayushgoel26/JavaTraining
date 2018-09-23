@@ -54,12 +54,15 @@ public class Items implements Billable, Serializable {
 
 	@Override
 	public String toString() {
-		return this.itemName + "-" + this.itemPrice + "-" + this.itemQuantity + "-" + this.rentalDays;
+		return this.itemName + " at a price of " + this.itemPrice + " for " + this.rentalDays + "days - " + this.itemQuantity +  " pieces";
 	}
 
 
 	@Override
 	public double getPrice() {
+		if (this.rentalDays > 10) {
+			return this.itemPrice * this.itemQuantity * this.rentalDays * 0.9;
+		}
 		return this.itemPrice * this.itemQuantity * this.rentalDays;
 	}
 	

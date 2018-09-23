@@ -6,7 +6,6 @@ import java.util.HashSet;
 public class Bill implements Serializable{
 	
 	private long invoiceID;
-	private Customer customer;
 	private HashSet<Items> itemSet;
 	
 	//Calculated Variables
@@ -17,22 +16,6 @@ public class Bill implements Serializable{
 		this.invoiceID = invoiceID;
 		this.itemSet = itemSet;
 	}
-	
-	public Bill(long invoiceID, Customer customer) {
-		super();
-		this.invoiceID = invoiceID;
-		this.customer = customer;
-		this.itemSet = new HashSet<>();
-	}
-
-
-
-	public Bill(long invoiceID, Customer customer, HashSet<Items> itemSet) {
-		super();
-		this.invoiceID = invoiceID;
-		this.customer = customer;
-		this.itemSet = itemSet;
-	}
 
 	public long getInvoiceID() {
 		return invoiceID;
@@ -40,14 +23,6 @@ public class Bill implements Serializable{
 
 	public void setInvoiceID(long invoiceID) {
 		this.invoiceID = invoiceID;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
 	}
 
 	public HashSet<Items> getItemSet() {
@@ -82,7 +57,7 @@ public class Bill implements Serializable{
 
 	@Override
 	public String toString() {
-		return invoiceID + ":=" + customer + ";" + itemSet + ";" + totalAmount;
+		return "\n"+invoiceID + ":=\n" + itemSet + "\nTotal: " +totalAmount+"\n";
 	}
 	
 	public boolean addItem(Items item){
@@ -96,6 +71,7 @@ public class Bill implements Serializable{
 	public double findTotal(){
 		
 		 for(Items item : this.itemSet){
+			 
 			 this.totalAmount = this.totalAmount + item.getPrice();
 		 }
 		 return this.totalAmount;

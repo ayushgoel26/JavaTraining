@@ -1,0 +1,179 @@
+Bill: 101
+
+2 Furniture  rented for 3 days at a price of 2700.0
+
+Total: 5400.0
+
+Bill: 101
+
+2 Furniture  rented for 3 days at a price of 2700.0
+3 Car  rented for 2 days at a price of 12000.0
+
+Total: 34800.0
+
+Bill: 101
+
+2 Furniture  rented for 2 days at a price of 1800.0
+
+Total: 3600.0
+
+Bill: 101
+
+2 Furniture  rented for 2 days at a price of 1800.0
+1 Car  rented for 2 days at a price of 4000.0
+
+Total: 15200.0
+
+Bill: 101
+
+3 Car  rented for 1 days at a price of 6000.0
+
+Total: 12000.0
+
+Bill: 101
+
+2 Car  rented for 2 days at a price of 8000.0
+
+Total: 16000.0
+
+Bill: 101
+
+2 Car  rented for 2 days at a price of 8000.0
+
+Total: 16000.0
+
+Bill: 101
+
+3 Car  rented for 1 days at a price of 6000.0
+2 Car  rented for 2 days at a price of 8000.0
+
+Total: 44000.0
+
+Bill: 102
+
+3 Car  rented for 1 days at a price of 6000.0
+2 Car  rented for 2 days at a price of 8000.0
+1 Car  rented for 1 days at a price of 2000.0
+
+Total: 32000.0
+
+Bill: 101
+
+2 Car  rented for 2 days at a price of 8000.0
+
+Total: 16000.0
+
+Bill: 101
+
+2 Car  rented for 1 days at a price of 4000.0
+2 Car  rented for 2 days at a price of 8000.0
+
+Total: 40000.0
+
+Bill: 101
+
+2 Furniture  rented for 3 days at a price of 2700.0
+3 Car  rented for 4 days at a price of 24000.0
+
+Total: 53400.0
+
+Bill: 102
+
+4 Fan  rented for 5 days at a price of 1000.0
+
+Total: 2000.0
+
+Bill: 101
+
+2 Furniture  rented for 3 days at a price of 2700.0
+
+Total: 5400.0
+
+Bill: 101
+
+2 Furniture  rented for 1 days at a price of 900.0
+1 Car  rented for 2 days at a price of 4000.0
+
+Total: 9800.0
+
+Bill: 102
+
+2 Furniture  rented for 6 days at a price of 5400.0
+
+Total: 10800.0
+
+Bill: 101
+
+2 Furniture  rented for 3 days at a price of 2700.0
+1 Car  rented for 2 days at a price of 4000.0
+
+Total: 13400.0
+
+Bill: 102
+
+2 Furniture  rented for 3 days at a price of 2700.0
+
+Total: 5400.0
+
+Bill: 101
+
+1 Car  rented for 1 days at a price of 2000.0
+
+Total: 4000.0
+
+Bill: 101
+
+2 Car  rented for 2 days at a price of 8000.0
+
+Total: 16000.0
+
+Bill: 101
+
+2 Furniture  rented for 3 days at a price of 2700.0
+
+Total: 5400.0
+
+Bill: 102
+
+2 Furniture  rented for 3 days at a price of 2700.0
+
+Total: 5400.0
+
+Bill: 103
+
+3 Utensil  rented for 2 days at a price of 60.0
+
+Total: 120.0
+
+Bill: 101
+
+1 Car  rented for 30 days at a price of 54000.0
+
+Total: 108000.0
+
+Bill: 101
+
+3 Car  rented for 43 days at a price of 232200.0
+
+Total: 464400.0
+
+Bill: 101
+
+5 Furniture  rented for 30 days at a price of 60750.0
+1 Car  rented for 30 days at a price of 54000.0
+
+Total: 229500.0
+
+Bill: 102
+
+1 Car  rented for 12 days at a price of 21600.0
+
+Total: 43200.0
+
+Bill: 101
+
+1 Furniture  rented for 1 days at a price of 450.0
+3 Car  rented for 30 days at a price of 162000.0
+
+Total: 324900.0
+
