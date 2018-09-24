@@ -1,5 +1,6 @@
 package com.training.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.training.entity.Movie;
@@ -18,13 +19,11 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 
 	@Override
-	public int addMovie(Movie movie) {
+	public int addMovie(Movie movie) throws Exception {
 		
 		String sql = "Insert into movieag values(?,?,?,?,?)";
 		PreparedStatement pstmt = null;
 		int rowAdded = 0;
-		
-		try {
 			pstmt = con.prepareStatement(sql); 
 			pstmt.setLong(1, movie.getMovieId());
 			pstmt.setString(2, movie.getMovieName());
@@ -33,35 +32,74 @@ public class MovieDAOImpl implements MovieDAO {
 			pstmt.setDouble(5, movie.getRating());
 			
 			rowAdded = pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally{
-			try {
+	
 				pstmt.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+
 		return rowAdded;
 	}
 
 	@Override
-	public List<Movie> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Movie> findAll() throws Exception {
+		String sql = "select * from movieag";
+		PreparedStatement pstmt = null;
+		
+		List<Movie> movieList = new ArrayList<>();
+
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				long movieId = rs.getLong("movieId");
+				String movieName = rs.getString("movieName");
+				String director = rs.getString("director");
+				String genre = rs.getString("genre");
+				Double rating = rs.getDouble("rating");
+				
+				Movie movie = new Movie(movieId, movieName, director, genre, rating);
+				movieList.add(movie);
+				
+
+			}
+			pstmt.close();
+
+		
+		return movieList;
 	}
 
 	@Override
-	public int remove(long movieId) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int remove(long movieId) throws Exception {
+		
+		int rowsDeleted = 0;
+		
+		String sql = "DELETE FROM MOVIEAG WHERE MOVIEID=?";
+		PreparedStatement pstmt = null;
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, movieId);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()){
+				rowsDeleted = rowsDeleted + 1;
+			}
+			pstmt.close();
+		
+		return rowsDeleted;
 	}
 
 	@Override
-	public int updateRating(long movieId, double currentRating) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateRating(long movieId, double currentRating) throws Exception {
+		String sql = "update movieag set rating = ? where movieId = ?";
+		PreparedStatement pstmt = null;
+		int rowUpdated = 0;
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setDouble(1, currentRating);
+			pstmt.setLong(2, movieId);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()){
+				rowUpdated = rowUpdated + 1;
+			}
+			pstmt.close();
+			
+			return rowUpdated;
 	}
 	
 
@@ -74,5 +112,31 @@ public class MovieDAOImpl implements MovieDAO {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public Movie findByPrimaryKey(long movieId) throws Exception {
+		//String sql = "select * from movieag where movieId = " + movieId;
+		String sql = "select * from movieag where movieId = ?";
+		PreparedStatement pstmt = null;
+		Movie movie = null;
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, movieId);
+
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()){
+			String movieName = rs.getString("movieName");
+			String director = rs.getString("director");
+			String genre = rs.getString("genre");
+			Double rating = rs.getDouble("rating");
+			
+			movie = new Movie(movieId, movieName, director, genre, rating);
+			}
+
+				pstmt.close();
+
+				
+		return movie;
 	}
 }
