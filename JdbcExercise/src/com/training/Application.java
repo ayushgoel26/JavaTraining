@@ -1,7 +1,5 @@
 package com.training;
 
-import java.util.*;
-
 import com.training.dao.impl.*;
 import com.training.entity.*;
 import com.training.util.DbConnection;
@@ -39,8 +37,12 @@ public class Application {
 				break;
 
 			case 3: 
-				List<Student> studentList = studentDao.findStudentsByCourse(102);
-				studentList.forEach(System.out::println);
+				Course course = studentDao.findStudentsByCourse(102);
+				System.out.println(course);
+				System.out.println("---");
+				for (Student student : course.getStudentList()){
+					System.out.println(student);
+				}
 			
 			}
 		} catch (Exception e) {

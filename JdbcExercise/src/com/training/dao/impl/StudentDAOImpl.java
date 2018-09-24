@@ -83,7 +83,7 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Override
-	public List<Student> findStudentsByCourse(double courseId) throws Exception {
+	public Course findStudentsByCourse(double courseId) throws Exception {
 
 		String sql = "select studentName,studentId,courseName,courseId from student_ag natural join course_ag where courseId = ?";
 		PreparedStatement pstmt = null;
@@ -94,20 +94,21 @@ public class StudentDAOImpl implements StudentDAO {
 		pstmt.setDouble(1, courseId);
 		
 		ResultSet rs = pstmt.executeQuery();
-		
+		String courseName= "";
 		while (rs.next()) {
 			String studentName = rs.getString("studentName");
 			double studentId = rs.getDouble("studentId");
-			String courseName = rs.getString("courseName");
+			courseName = rs.getString("courseName");
 			
-			System.out.println("studentName: " + studentName + ", studentId: " + studentId + ",  courseId: " + courseId + ", courseName: " + courseName);
+			//System.out.println("studentName: " + studentName + ", studentId: " + studentId + ",  courseId: " + courseId + ", courseName: " + courseName);
 			
 			Student student = new Student(studentName, studentId, courseId);
 			studentList.add(student);
 		}
+		Course course = new Course(courseName, courseId, studentList);
 		
 		pstmt.close();
-		return studentList;
+		return course;
 	}
 
 }

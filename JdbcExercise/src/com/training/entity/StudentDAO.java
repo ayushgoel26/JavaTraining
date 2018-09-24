@@ -10,5 +10,5 @@ public interface StudentDAO {
 
 	public Student findStudentById(long studentId) throws Exception;
 	
-	public List<Student> findStudentsByCourse(double courseId) throws Exception;
+	public Course findStudentsByCourse(double courseId) throws Exception;
 }

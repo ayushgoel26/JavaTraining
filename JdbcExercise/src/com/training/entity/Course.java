@@ -18,6 +18,14 @@ public class Course {
 		this.courseName = courseName;
 		this.courseId = courseId;
 	}
+	
+	
+	public Course(String courseName, double courseId, List<Student> studentList) {
+		super();
+		this.courseName = courseName;
+		this.courseId = courseId;
+		this.studentList = studentList;
+	}
 
 	public String getCourseName() {
 		return courseName;
@@ -34,10 +42,18 @@ public class Course {
 	public void setCourseId(double courseId) {
 		this.courseId = courseId;
 	}
+	
+	public List<Student> getStudentList() {
+		return studentList;
+	}
+
+	public void setStudentList(List<Student> studentList) {
+		this.studentList = studentList;
+	}
 
 	@Override
 	public String toString() {
-		return "Course [courseName=" + courseName + ", courseId=" + courseId + "]";
+		return "Course : courseName = " + courseName + ", courseId = " + courseId ;
 	}
 	
 	
