@@ -1,9 +1,13 @@
 package com.training.entity;
 
+import java.util.*;
+
 public class Course {
 	private String courseName;
 	private double courseId;
-
+	private List<Student> studentList;
+	
+	
 	public Course() {
 		super();
 		// TODO Auto-generated constructor stub
