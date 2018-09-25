@@ -78,6 +78,7 @@ public class ManageProducts {
 	}
 
 	public double totalAmt(List<Product> prdList){
-		return prdList.parallelStream().map(p -> p.getRatePerUnit()).reduce(0.0, (p1,p2)->{p1+=p2; return p1;});
+		Double result = prdList.parallelStream().map(p -> p.getRatePerUnit()).reduce(0.0, (p1,p2)->{p1+=p2; return p1;});
+		return result;
 	}
 }

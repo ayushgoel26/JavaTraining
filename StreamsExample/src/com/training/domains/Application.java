@@ -44,7 +44,7 @@ public class Application {
 			
 		}
 	
-	
+		System.out.println(mgr.totalAmt(prdList));
 	}
 	
 	
