@@ -7,7 +7,7 @@ public class QuickStart {
 	}
 	
 	public double calculateDiscount(double amount) throws RuntimeException{
-		double discount = 0.0;
+		double discount;
 		if (amount > 0) {
 		if(amount < 5000){
 			discount = 0.10;
