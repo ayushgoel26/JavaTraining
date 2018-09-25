@@ -20,8 +20,8 @@ public class Application {
 				Course java = new Course( "Java" , 101);
 				Course dotNet = new Course("Dot Net",102);
 				int a = courseDao.addCourse(java); 
-				int b = courseDao.addCourse(dotNet);
-				System.out.println((a+b) + ":= Course added");
+				a += courseDao.addCourse(dotNet);
+				System.out.println(a + ":= Course added");
 				break;
 			
 			case 2:
@@ -30,20 +30,17 @@ public class Application {
 				Student rai = new Student("rai", 003, 102);
 				Student karan = new Student("karan", 004, 101);
 				int a1 = studentDao.addStudent(ram);
-				int b1 = studentDao.addStudent(shyam);
-				int c = studentDao.addStudent(rai);
-				int d = studentDao.addStudent(karan);
-				System.out.println((a1+b1+c+d) + ":= Row Added");
+				a1 += studentDao.addStudent(shyam);
+				a1 += studentDao.addStudent(rai);
+				a1 += studentDao.addStudent(karan);
+				System.out.println(a1 + ":= Row Added");
 				break;
 
 			case 3: 
-				Course course = studentDao.findStudentsByCourse(102);
+				Course course = studentDao.findStudentsByCourse(101);
 				System.out.println(course);
 				System.out.println("---");
-				for (Student student : course.getStudentList()){
-					System.out.println(student);
-				}
-			
+				course.getStudentList().forEach(System.out::println);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

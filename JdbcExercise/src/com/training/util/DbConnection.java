@@ -16,7 +16,9 @@ public class DbConnection {
 			FileInputStream inStream = new FileInputStream(new File("jdbc.properties"));
 			
 			props.load(inStream);
-			Class.forName(props.getProperty("db.driverClass"));
+			
+			//class.forName is  not required after jdbc3. but jar needs to be there. 
+			//Class.forName(props.getProperty("db.driverClass"));
 			
 			String url = props.getProperty("db.url");
 			String user = props.getProperty("db.userName");
