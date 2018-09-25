@@ -77,5 +77,7 @@ public class ManageProducts {
 		return priceMap;
 	}
 
-
+	public double totalAmt(List<Product> prdList){
+		return prdList.parallelStream().map(p -> p.getRatePerUnit()).reduce(0.0, (p1,p2)->{p1+=p2; return p1;});
+	}
 }
