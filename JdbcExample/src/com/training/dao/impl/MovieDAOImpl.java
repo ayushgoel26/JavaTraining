@@ -5,11 +5,12 @@ import java.util.List;
 
 import com.training.entity.Movie;
 import com.training.entity.MovieDAO;
+import com.training.entity.DAO;
 import com.training.utils.DbConnection;
 
 import java.sql.*;
 
-public class MovieDAOImpl implements MovieDAO {
+public class MovieDAOImpl implements MovieDAO<Movie> {
 
 	private Connection con;
 
@@ -19,7 +20,7 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 
 	@Override
-	public int addMovie(Movie movie) throws Exception {
+	public int add(Movie movie) throws Exception {
 
 		String sql = "Insert into movieag values(?,?,?,?,?)";
 		PreparedStatement pstmt = null;
@@ -58,7 +59,6 @@ public class MovieDAOImpl implements MovieDAO {
 
 	@Override
 	public Movie findByPrimaryKey(long movieId) throws Exception {
-		// String sql = "select * from movieag where movieId = " + movieId;
 		String sql = "select * from movieag where movieId = ?";
 		PreparedStatement pstmt = null;
 		Movie movie = null;
@@ -130,7 +130,6 @@ public class MovieDAOImpl implements MovieDAO {
 		try {
 			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
