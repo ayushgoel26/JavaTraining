@@ -1,11 +1,13 @@
-package com.contact.entity;
+package com.contact.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.contact.domains.Contact;
 import com.contact.domains.ContactNumber;
@@ -192,6 +194,27 @@ public class contactDaoImpl implements contactDAO {
 		
 		return contactFound;
 	}
+	
+	public Map<String, Integer> countContacts() throws SQLException{
+		String sql = "select contactCategory, count(*) from contactdetails_ag natural join contactnumbers_ag group by contactCategory";
+		PreparedStatement pstmt = null;
+
+		pstmt = con.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		boolean exists = false;
+		HashMap<String, Integer> countList = new HashMap<>();
+
+		while (rs.next()) {
+
+			String category = rs.getString("contactCategory");
+			int total = rs.getInt("count(*)");
+			countList.put(category, total);
+		}
+		pstmt.close();
+
+		return countList;
+	}
+	
 	
 	@Override
 	public List<Contact> findContactByCategory(String contactCategory) throws SQLException {

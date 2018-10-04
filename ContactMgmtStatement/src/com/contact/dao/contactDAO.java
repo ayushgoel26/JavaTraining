@@ -1,4 +1,4 @@
-package com.contact.entity;
+package com.contact.dao;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -18,5 +18,6 @@ public interface contactDAO {
 	public List<Contact> findContactByCategory(String contactCategory) throws SQLException;
 	public List<Contact> findContactByName(String contactName) throws SQLException;
 	public List<Contact> findAllContacts() throws SQLException;
+	public Map<String, Integer> countContacts() throws SQLException;
 	
 }

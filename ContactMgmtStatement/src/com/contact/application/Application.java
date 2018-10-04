@@ -2,10 +2,10 @@ package com.contact.application;
 
 import java.sql.SQLException;
 
+import com.contact.dao.contactDAO;
+import com.contact.dao.contactDaoImpl;
 import com.contact.domains.Contact;
 import com.contact.domains.ContactNumber;
-import com.contact.entity.contactDAO;
-import com.contact.entity.contactDaoImpl;
 import com.contact.util.DbConnection;
 
 public class Application {
@@ -16,7 +16,7 @@ public class Application {
 		
 		contactDAO contactManager = new contactDaoImpl();
 		
-		int key =3;
+		int key =9;
 		
 		/*
 		 * 1 - Add New Contact 
@@ -26,7 +26,8 @@ public class Application {
 		 * 5 - delete 
 		 * 6 - edit  
 		 * 7 - add to existing 
-		 * 8 - find by name 
+		 * 8 - find by name
+		 * 9 - count contacts 
 		 */
 		
 		
@@ -57,6 +58,8 @@ public class Application {
 				case 8: 
 					System.out.println(contactManager.findContactByName("Ayush"));
 					break;
+				case 9: 
+					System.out.println(contactManager.countContacts());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
